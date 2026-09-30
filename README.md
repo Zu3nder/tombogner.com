@@ -33,14 +33,15 @@ A `.nojekyll` file is included so GitHub Pages serves assets as-is.
 ```
 index.html                 Homepage
 css/styles.css             Styles
-js/main.js                 Berlin clock + light scroll reveals
-assets/                    Favicons, OG image, logos, showreel
-pitch/                     Case study stub
-microsoft/                 Case study stub
-app-basics/                Wunderlist case study stub
-sqior/                     Case study stub
-motion-explorations/       Case study stub
-presentation/              Stub (linked from footer)
+js/main.js                 Berlin clock, video hover controls, reveals
+assets/                    Favicons, OG image, logos, homepage showreel
+assets/case-studies/       Self-hosted case study images & videos
+pitch/                     Pitch case study
+microsoft/                 Microsoft case study
+app-basics/                Wunderlist case study
+sqior/                     sqior case study
+motion-explorations/       Explorations + Motion
+presentation/              Empty placeholder (matches live)
 ```
 
-Case study routes match the live site; full case study content can be filled in later.
+Case study media is self-hosted. Larger Framer source videos were compressed (H.264, ≤1280px wide) to keep the repo lean for GitHub Pages; no media was left hotlinked.

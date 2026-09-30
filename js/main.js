@@ -2,7 +2,6 @@
   document.documentElement.classList.add("js-ready");
 
   const clockEl = document.getElementById("berlin-clock");
-  const showreel = document.getElementById("showreel");
 
   function formatBerlinTime(date = new Date()) {
     return new Intl.DateTimeFormat("en-US", {
@@ -18,32 +17,40 @@
     clockEl.textContent = formatBerlinTime();
   }
 
-  tickClock();
-  window.setInterval(tickClock, 1000);
+  if (clockEl) {
+    tickClock();
+    window.setInterval(tickClock, 1000);
+  }
 
-  if (showreel) {
+  function enhanceVideo(video) {
     const showControls = () => {
-      showreel.controls = true;
+      video.controls = true;
     };
     const hideControls = () => {
-      showreel.controls = false;
+      video.controls = false;
     };
 
-    showreel.addEventListener("pointerenter", showControls);
-    showreel.addEventListener("pointerleave", hideControls);
-    showreel.addEventListener("focus", showControls);
-    showreel.addEventListener("blur", hideControls);
+    video.addEventListener("pointerenter", showControls);
+    video.addEventListener("pointerleave", hideControls);
+    video.addEventListener("focus", showControls);
+    video.addEventListener("blur", hideControls);
 
-    // Ensure autoplay after metadata is ready (some browsers need play())
     const tryPlay = () => {
-      const playPromise = showreel.play();
+      const playPromise = video.play();
       if (playPromise && typeof playPromise.catch === "function") {
         playPromise.catch(() => {});
       }
     };
-    if (showreel.readyState >= 2) tryPlay();
-    else showreel.addEventListener("loadeddata", tryPlay, { once: true });
+
+    if (video.hasAttribute("autoplay")) {
+      if (video.readyState >= 2) tryPlay();
+      else video.addEventListener("loadeddata", tryPlay, { once: true });
+    }
   }
+
+  document
+    .querySelectorAll("video#showreel, video.case-video")
+    .forEach(enhanceVideo);
 
   const sections = document.querySelectorAll(".section");
   if (!sections.length) return;
