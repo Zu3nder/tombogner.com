@@ -23,6 +23,9 @@
   }
 
   function enhanceVideo(video) {
+    video.loop = true;
+    video.muted = true;
+
     const showControls = () => {
       video.controls = true;
     };
@@ -35,6 +38,14 @@
     video.addEventListener("focus", showControls);
     video.addEventListener("blur", hideControls);
 
+    video.addEventListener("ended", () => {
+      video.currentTime = 0;
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {});
+      }
+    });
+
     const tryPlay = () => {
       const playPromise = video.play();
       if (playPromise && typeof playPromise.catch === "function") {
@@ -42,7 +53,7 @@
       }
     };
 
-    if (video.hasAttribute("autoplay")) {
+    if (video.hasAttribute("autoplay") || video.id === "showreel") {
       if (video.readyState >= 2) tryPlay();
       else video.addEventListener("loadeddata", tryPlay, { once: true });
     }
