@@ -98,7 +98,10 @@ a:focus-visible {
 
 /* Media */
 .media {
-  width: 100%;
+  width: 120%;
+  max-width: 100vw;
+  margin-left: 50%;
+  translate: -50% 0;
   border-radius: var(--radius-media);
   overflow: hidden;
   background: #111;
@@ -115,6 +118,7 @@ a:focus-visible {
   aspect-ratio: 16 / 9;
   object-fit: cover;
   background: #000;
+  border-radius: var(--radius-media);
 }
 
 /* Sections */
@@ -474,6 +478,12 @@ a:focus-visible {
 
   .hero {
     padding-top: 36px;
+  }
+
+  .media {
+    width: 100%;
+    margin-left: 0;
+    translate: none;
   }
 
   .bottom-grid {
