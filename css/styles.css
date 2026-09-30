@@ -182,9 +182,17 @@ a:focus-visible {
   background: var(--bg-elevated);
 }
 
-.experience-item:hover .chevron {
+a.experience-item:hover .chevron {
   color: var(--text);
   transform: translateX(3px);
+}
+
+.experience-item--static {
+  cursor: default;
+}
+
+.experience-item--static:hover {
+  background: transparent;
 }
 
 .experience-logo {
