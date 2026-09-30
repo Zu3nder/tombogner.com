@@ -320,6 +320,13 @@ a.experience-item:hover .chevron {
   gap: 32px 24px;
 }
 
+#contact,
+#meet {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
 .contact-list,
 .meet-list {
   list-style: none;
