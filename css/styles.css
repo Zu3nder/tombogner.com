@@ -67,6 +67,9 @@ a:focus-visible {
   flex-direction: column;
   gap: 12px;
   padding-top: clamp(48px, 18vh, 140px);
+}
+
+.js-ready .hero {
   opacity: 0;
   transform: translateY(16px);
   animation: rise 0.8s ease forwards;
@@ -97,6 +100,9 @@ a:focus-visible {
   border-radius: var(--radius-media);
   overflow: hidden;
   background: #111;
+}
+
+.js-ready .media {
   opacity: 0;
   transform: translateY(20px);
   animation: rise 0.9s ease 0.12s forwards;
