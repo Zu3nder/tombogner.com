@@ -23,6 +23,23 @@
   }
 
   function enhanceVideo(video) {
+    video.loop = true;
+    video.muted = true;
+
+    const startAt =
+      video.id === "showreel" && Number.isFinite(Number(video.dataset.startAt))
+        ? Number(video.dataset.startAt)
+        : video.id === "showreel"
+          ? 0.812
+          : 0;
+
+    const seekToStart = () => {
+      if (!startAt || !Number.isFinite(video.duration) || video.duration <= 0) {
+        return;
+      }
+      video.currentTime = video.duration * startAt;
+    };
+
     const showControls = () => {
       video.controls = true;
     };
@@ -35,16 +52,45 @@
     video.addEventListener("focus", showControls);
     video.addEventListener("blur", hideControls);
 
+    video.addEventListener("ended", () => {
+      seekToStart();
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {});
+      }
+    });
+
+    // Keep native loop from jumping back to 0 for the showreel start offset
+    if (startAt > 0) {
+      video.loop = false;
+      video.addEventListener("timeupdate", () => {
+        if (
+          Number.isFinite(video.duration) &&
+          video.duration > 0 &&
+          video.currentTime >= video.duration - 0.08
+        ) {
+          seekToStart();
+          if (video.paused) {
+            const playPromise = video.play();
+            if (playPromise && typeof playPromise.catch === "function") {
+              playPromise.catch(() => {});
+            }
+          }
+        }
+      });
+    }
+
     const tryPlay = () => {
+      seekToStart();
       const playPromise = video.play();
       if (playPromise && typeof playPromise.catch === "function") {
         playPromise.catch(() => {});
       }
     };
 
-    if (video.hasAttribute("autoplay")) {
-      if (video.readyState >= 2) tryPlay();
-      else video.addEventListener("loadeddata", tryPlay, { once: true });
+    if (video.hasAttribute("autoplay") || video.id === "showreel") {
+      if (video.readyState >= 1) tryPlay();
+      else video.addEventListener("loadedmetadata", tryPlay, { once: true });
     }
   }
 

@@ -182,9 +182,17 @@ a:focus-visible {
   background: var(--bg-elevated);
 }
 
-.experience-item:hover .chevron {
+a.experience-item:hover .chevron {
   color: var(--text);
   transform: translateX(3px);
+}
+
+.experience-item--static {
+  cursor: default;
+}
+
+.experience-item--static:hover {
+  background: transparent;
 }
 
 .experience-logo {
@@ -296,6 +304,10 @@ a:focus-visible {
   color: var(--text-muted);
 }
 
+.about-copy p:first-child {
+  color: var(--text);
+}
+
 .about-copy .emphasis {
   color: var(--text);
   font-weight: 600;
@@ -306,6 +318,13 @@ a:focus-visible {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 32px 24px;
+}
+
+#contact,
+#meet {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
 .contact-list,
