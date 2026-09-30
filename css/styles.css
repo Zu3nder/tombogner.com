@@ -115,11 +115,14 @@ a:focus-visible {
   flex-direction: column;
   gap: 20px;
   padding-top: 8px;
+}
+
+.js-ready .section {
   opacity: 0;
   transform: translateY(18px);
 }
 
-.section.is-visible {
+.js-ready .section.is-visible {
   animation: rise 0.7s ease forwards;
 }
 
@@ -145,7 +148,11 @@ a:focus-visible {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0;
+}
+
+.experience-list > li + li .experience-item {
+  border-top: 1px solid var(--divider);
 }
 
 .experience-item {
@@ -153,7 +160,7 @@ a:focus-visible {
   align-items: center;
   gap: 14px;
   width: 100%;
-  padding: 12px 10px;
+  padding: 14px 10px;
   border-radius: var(--radius-row);
   background: transparent;
   transition: background-color 0.25s ease, transform 0.25s ease;
@@ -252,7 +259,7 @@ a:focus-visible {
 
 .education-years {
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--text-dim);
 }
 
 .education-school {
@@ -492,8 +499,9 @@ a:focus-visible {
 
   .hero,
   .media,
-  .section {
-    opacity: 1;
-    transform: none;
+  .js-ready .section,
+  .js-ready .section.is-visible {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

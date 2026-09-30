@@ -1,4 +1,6 @@
 (() => {
+  document.documentElement.classList.add("js-ready");
+
   const clockEl = document.getElementById("berlin-clock");
 
   function formatBerlinTime(date = new Date()) {
@@ -19,7 +21,9 @@
   window.setInterval(tickClock, 1000);
 
   const sections = document.querySelectorAll(".section");
-  if (!("IntersectionObserver" in window) || !sections.length) {
+  if (!sections.length) return;
+
+  if (!("IntersectionObserver" in window)) {
     sections.forEach((section) => section.classList.add("is-visible"));
     return;
   }
