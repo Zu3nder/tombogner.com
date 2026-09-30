@@ -293,7 +293,7 @@ a:focus-visible {
   font-size: clamp(17px, 2.4vw, 21px);
   font-weight: 500;
   line-height: 1.6;
-  color: var(--text-muted);
+  color: var(--text);
 }
 
 .about-copy .emphasis {
