@@ -1,0 +1,170 @@
+@font-face {
+  font-family: "Geist";
+  src: url("../../assets/fonts/Geist-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Geist Serif ships without an italic; the browser synthesizes the slant. */
+@font-face {
+  font-family: "Geist Serif";
+  src: url("../../assets/fonts/GeistSerif-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg: #f7f5f1;
+  --ink: #121212;
+  --rule: rgba(18, 18, 18, 0.9);
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Geist", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.about-hero {
+  max-width: 1440px;
+  min-height: 100svh;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 7vw, 6rem) var(--gutter) clamp(1.5rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(3rem, 8vw, 6rem);
+}
+
+.about-headline {
+  --measure: 10.9;
+  margin: 0;
+  font-size: calc((min(100vw, 1440px) - 2 * var(--gutter)) / var(--measure));
+  font-weight: 450;
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.28em;
+  white-space: nowrap;
+}
+
+.about-headline em {
+  font-family: "Geist Serif", ui-serif, Georgia, serif;
+  font-style: italic;
+  font-synthesis: style;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+}
+
+.tile {
+  display: inline-block;
+  flex: 1 1 0;
+  height: 0.84em;
+  min-width: 1.35em;
+  max-width: 2.6em;
+  margin-top: 0.06em;
+  object-fit: cover;
+  border-radius: 0.09em;
+  background: rgba(18, 18, 18, 0.06);
+  animation: tile-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.tile:nth-of-type(1) { animation-delay: 80ms; }
+.tile:nth-of-type(2) { animation-delay: 160ms; }
+.tile:nth-of-type(3) { animation-delay: 240ms; }
+.tile:nth-of-type(4) { animation-delay: 320ms; }
+.tile:nth-of-type(5) { animation-delay: 400ms; }
+.tile:nth-of-type(6) { animation-delay: 480ms; }
+.tile:nth-of-type(7) { animation-delay: 560ms; }
+
+@keyframes tile-in {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.about-hero-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-top: clamp(1rem, 2vw, 1.5rem);
+  border-top: 1.5px solid var(--rule);
+}
+
+.about-wordmark {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 450;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.about-domain {
+  color: inherit;
+  font-size: clamp(1rem, 1.6vw, 1.375rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.about-domain:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.tile--wide {
+  max-width: 3.6em;
+}
+
+@media (max-width: 720px) {
+  .about-headline {
+    font-size: clamp(2.25rem, 11vw, 3.5rem);
+    line-height: 1.15;
+  }
+
+  .line {
+    display: inline;
+    white-space: normal;
+  }
+
+  .tile {
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    aspect-ratio: 1.6;
+    vertical-align: -0.1em;
+    margin: 0 0.04em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile {
+    animation: none;
+  }
+}
